@@ -5,16 +5,16 @@
 {% block styles%}
 {{ super() }}
 <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
-{% endblock %}
+{%  %}e
 
 <!--content block-->
-{% block content %}
+<!--{% block content %}-->
 
-</div>
-<h3> Popular Movies</h3>
-<ul>
-    {{ macro.displayMovieList(popular) }}
-</ul>
+<!--</div>-->
+<!--<h3> Popular Movies</h3>-->
+<!--<ul>-->
+<!--    {{ macro.displayNewsList(name) }}-->
+<!--</ul>-->
 <!--<h3> Upcoming Movies </h3>-->
 <!--<ul>-->
 <!--    {{ macro.displayMovieList(upcoming) }}-->
@@ -23,4 +23,10 @@
 <!--<ul>-->
 <!--    {{ macro.displayMovieList(now_showing) }}-->
 <!--</ul>-->
+<!--{% e %}-->
+{% block content %}
+<h3> General News</h3>
+<ul>
+    <li>{{ macro.displayNewsList(general) }}</li>
+</ul>
 {% endblock %}

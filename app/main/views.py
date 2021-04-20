@@ -1,8 +1,7 @@
-from flask import render_template,request,redirect,url_for
+from flask import render_template
 from ..request import get_source
-# from .forms import ReviewForm
-from ..models import News
 from .import main
+from ..models import News
 
 @main.route('/')
 def index():
@@ -11,14 +10,13 @@ def index():
     View root page function that returns the index page and its data
     '''
 
-    # Getting popular movie
-    # news_id = get_source('id')
-    # news_name = get_source('name')
-    # news_description = get_source('description')
 
-    # title = 'Home - Welcome to The best Movie Review Website Online'
 
-    render_template('request.html' )
+    general = get_source('general')
+
+
+    return render_template('index.html', general = general)
+
 
 # @main.route('/movie/<int:id>')
 # def movie(id):
