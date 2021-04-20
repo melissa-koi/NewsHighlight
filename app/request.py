@@ -1,5 +1,10 @@
 import urllib.request, json
+
+from flask import render_template
+
 from .models import News
+from newsapi import NewsApiClient
+
 
 
 # Getting api key
@@ -14,28 +19,40 @@ def configure_request(app):
 
 
 def get_source(category):
-    get_news_details_url = base_url.format(category)
+    get_news_details_url = base_url.format(category, api_key)
 
     with urllib.request.urlopen(get_news_details_url) as url:
         news_details_data = url.read()
         news_details_response = json.loads(news_details_data)
+        print(news_details_response)
 
         news_object = None
         if news_details_response['sources']:
-            source_library = news_details_response.get['sources']
+            source_library = news_details_response['sources']
             news_object = process_sources(source_library)
-        else :
-            print("noneee")
     return news_object
+#     name = []
+#     news_api = NewsApiClient(api_key='33fc8330b71f4cb684fa492fd9074cc3')
+#     sources = news_api.get_sources()
+#     for i in range(len(sources)):
+#         my_profile = sources[i]
+#         name.append(my_profile['name'])
+#     mylist = zip(name)
+#
+#     return  render_template('index.html', context=mylist)
+#
+# if __name__ == "__main__":
+#     app.run(debug=True)
+#
 
-def process_sources(sources):
+def process_sources(source_library):
     '''
     Function  that processes the news result and transform them to a list of Objects
     '''
     source_results = []
-    for source in sources:
-        id = source.get('id')
-        name = source.get('name')
+    for source in source_library:
+        id = source.get("id")
+        name = source.get("name")
         description = source.get('description')
         url = source.get('url')
         category = source.get("category")
