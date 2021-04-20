@@ -1,8 +1,9 @@
 {% macro displayNewsList(source_results) %}
 
 {% for news in source_results %}
-<div >
-    <li class="text-center"><a href="/">{{news.name}}</a></li>
+<div class="text-center">
+    <h3><li><a href="/">{{news.name}}</a></li></h3>
+    <h4>{{news.description}}</h4>
 </div>
 
 {% endfor %}

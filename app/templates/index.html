@@ -1,15 +1,14 @@
-{% extends 'base.html' %}
+{% extends 'bootstrap/base.html'%}
 {% import 'macros.html' as macro %}
 
-
-{% block styles%}
-{{ super() }}
-<link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{url_for('static',filename='index.scss')}}">
 {% endblock %}
 
 {% block content %}
-<h3> General News</h3>
+    <h3> General News</h3>
 
-<ul>{{ macro.displayNewsList(general) }}</ul>
+    <ul>{{ macro.displayNewsList(general) }}</ul>
 
 {% endblock %}
