@@ -14,7 +14,7 @@ def configure_request(app):
 
 
 def get_source(category):
-    get_news_details_url = base_url.format(category,api_key)
+    get_news_details_url = base_url.format(category)
 
     with urllib.request.urlopen(get_news_details_url) as url:
         news_details_data = url.read()
@@ -24,18 +24,14 @@ def get_source(category):
         if news_details_response['sources']:
             source_library = news_details_response.get['sources']
             news_object = process_sources(source_library)
+        else :
+            print("noneee")
     return news_object
 
 def process_sources(sources):
-    # '''
-    # Function  that processes the news result and transform them to a list of Objects
-    #
-    # Args:
-    #     movie_list: A list of dictionaries that contain movie details
-    #
-    # Returns :
-    #     movie_results: A list of movie objects
-    # '''
+    '''
+    Function  that processes the news result and transform them to a list of Objects
+    '''
     source_results = []
     for source in sources:
         id = source.get('id')
