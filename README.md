@@ -17,5 +17,5 @@ You will need:
 * A GitHub account
 * Repository used to host the website
 
-## [Link]( https://melissa-koi.github.io/GithubSearch/) to live webpage
+## [Link]( https://m-newshighlight.herokuapp.com/ ) to live webpage
 ## [License](https://github.com/melissa-koi/NewsHighlight/blob/main/LICENSE)
