@@ -1,4 +1,5 @@
 # Default ignored files
 /shelf/
 /workspace.xml
-/instance
+*.pyc
+instance/
