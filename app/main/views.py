@@ -13,10 +13,10 @@ def index():
     '''
 
     general = get_source('general')
-    source = get_articles('bbc-news')
-    return render_template('index.html', general = general, source = source)
 
-# @main.route('/articles/<int:id>')
-# def articles():
-#     newsapi = NewsApiClient(config.NEWS_API_KEY)
-#     all_articles = newsapi.get_everything(sources='bbc-news')
+    return render_template('index.html', general = general)
+
+@main.route('/articles/<source>')
+def articles(source):
+    article = get_articles(source)
+    return render_template('news.html', articles=article, source = source)

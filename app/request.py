@@ -62,9 +62,9 @@ def get_articles(source):
             article_object = process_articles(article_library)
     return article_object
 
-def process_articles(article_dict):
+def process_articles(article_news):
     article_results = []
-    for article in article_dict:
+    for article in article_news:
         id = article.get("id")
         name = article.get("name")
         title = article.get("title")
