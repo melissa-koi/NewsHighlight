@@ -2,7 +2,7 @@ import urllib.request, json
 
 from flask import render_template
 
-from app.models import News
+from app.models import News, Articles
 from newsapi import NewsApiClient
 from instance import config
 
@@ -50,9 +50,35 @@ def process_sources(source_library):
 
 def get_articles(source):
     newsapi = NewsApiClient(config.NEWS_API_KEY)
-    article_object=None
     article_dict = newsapi.get_everything(sources=source)
+    print(article_dict)
+    with urllib.request.urlopen(get_news_details_url) as url:
+        news_details_data = url.read()
+        news_details_response = json.loads(news_details_data)
+
+        news_object = None
+        if news_details_response['sources']:
+            source_library = news_details_response['sources']
+            news_object = process_sources(source_library)
+    return news_object
+
+
+    article_object=None
     article_object = process_sources(article_dict)
     return article_object
 
 def process_articles(article_dict):
+    article_results = []
+    for article in article_dict:
+        id = article.get("id")
+        name = article.get("name")
+        title = article.get("title")
+        description = article.get('description')
+        url = article.get('url')
+        urlToImage = article.get('urlToImage')
+        publishedAt = article.get("publishedAt")
+
+        data_articles = Articles(id,name,title,description,url,urlToImage,publishedAt)
+        article_results.append(data_articles)
+
+    return article_results
