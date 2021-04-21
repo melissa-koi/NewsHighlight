@@ -1,11 +1,6 @@
 import urllib.request, json
 
-from flask import render_template
-
 from app.models import News, Articles
-from newsapi import NewsApiClient
-from instance import config
-
 
 # Getting api key
 api_key = None
@@ -19,6 +14,9 @@ def configure_request(app):
 
 
 def get_source(category):
+    '''
+    Function that gets the json response to our url request
+    '''
     get_news_details_url =base_url.format(category, api_key)
 
     with urllib.request.urlopen(get_news_details_url) as url:
@@ -49,8 +47,10 @@ def process_sources(source_library):
     return source_results
 
 def get_articles(source):
-
-    article_news = 'https://newsapi.org/v2/top-headlines?sources={}&apiKey=33fc8330b71f4cb684fa492fd9074cc3'.format(source)
+    '''
+    Function that gets the json response to our url request
+    '''
+    article_news = 'https://newsapi.org/v2/top-headlines?sources={}&apiKey={}'.format(source, api_key)
 
     with urllib.request.urlopen(article_news) as url:
         article_details_data = url.read()
@@ -63,6 +63,9 @@ def get_articles(source):
     return article_object
 
 def process_articles(article_news):
+    '''
+    Function  that processes the articles result and transform them to a list of Objects
+    '''
     article_results = []
     for article in article_news:
         id = article.get("id")
