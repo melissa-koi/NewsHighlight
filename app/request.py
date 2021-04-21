@@ -49,22 +49,17 @@ def process_sources(source_library):
     return source_results
 
 def get_articles(source):
-    newsapi = NewsApiClient(config.NEWS_API_KEY)
-    article_dict = newsapi.get_everything(sources=source)
-    print(article_dict)
-    with urllib.request.urlopen(get_news_details_url) as url:
-        news_details_data = url.read()
-        news_details_response = json.loads(news_details_data)
 
-        news_object = None
-        if news_details_response['sources']:
-            source_library = news_details_response['sources']
-            news_object = process_sources(source_library)
-    return news_object
+    article_news = 'https://newsapi.org/v2/top-headlines?sources={}&apiKey=33fc8330b71f4cb684fa492fd9074cc3'.format(source)
 
+    with urllib.request.urlopen(article_news) as url:
+        article_details_data = url.read()
+        article_details_response = json.loads(article_details_data)
 
-    article_object=None
-    article_object = process_sources(article_dict)
+        article_object = None
+        if article_details_response['articles']:
+            article_library = article_details_response['articles']
+            article_object = process_articles(article_library)
     return article_object
 
 def process_articles(article_dict):

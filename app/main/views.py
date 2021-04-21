@@ -1,5 +1,5 @@
 from flask import render_template,request,redirect,url_for
-from ..request import get_source
+from ..request import get_source, get_articles
 from .import main
 from ..models import News
 from newsapi import NewsApiClient
@@ -13,10 +13,10 @@ def index():
     '''
 
     general = get_source('general')
+    source = get_articles('bbc-news')
+    return render_template('index.html', general = general, source = source)
 
-    return render_template('index.html', general = general)
-
-@main.route('/articles/<int:id>')
-def articles():
-    newsapi = NewsApiClient(config.NEWS_API_KEY)
-    all_articles = newsapi.get_everything(sources='bbc-news')
+# @main.route('/articles/<int:id>')
+# def articles():
+#     newsapi = NewsApiClient(config.NEWS_API_KEY)
+#     all_articles = newsapi.get_everything(sources='bbc-news')
