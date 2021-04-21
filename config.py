@@ -1,13 +1,13 @@
 import os
-
+from instance import config
 class Config:
     '''
     General configuration parent class
     '''
     NEWS_API_BASE_URL = 'https://newsapi.org/v2/sources?category={}&apikey={}'
-    NEWS_API_KEY = os.environ.get('NEWS_API_KEY')
+    NEWS_APIKEY = config.NEWS_API_KEY
     SECRET_KEY = os.environ.get('SECRET_KEY')
-    
+
 class ProdConfig(Config):
     '''
     Production  configuration child class
