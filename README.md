@@ -9,7 +9,7 @@ This is an application that will help one list various news sources, preview the
 * Pycharm
 * Flask
 * newsAPI
-* pep8
+* Heroku
 
 ## Setup
 You will need:
